@@ -6,3 +6,4 @@ instance/*.db
 .env
 logs/
 dist/
+logs/*.log
