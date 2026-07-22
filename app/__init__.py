@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, app
 
 from app.logger import setup_logging
 from .db import init_db, seed_default_user, close_db
@@ -20,6 +20,8 @@ def create_app(test_config=None):
 
     os.makedirs(app.instance_path, exist_ok=True)
 
+    setup_logging(app)
+    
     from .routes import bp
     app.register_blueprint(bp)
     app.teardown_appcontext(close_db)
@@ -27,7 +29,5 @@ def create_app(test_config=None):
     with app.app_context():
         init_db()
         seed_default_user()
-
-    setup_logging(app)
     
     return app
