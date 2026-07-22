@@ -70,15 +70,17 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a nulla sapien. Done
 
 ---
 
-## 📚 What I Learned
 
-This project helped me improve my knowledge of:
+  # Agenda Médica App Design
 
-- skill 1
-- skill 2
-- skill 3
+  This is a code bundle for Agenda Médica App Design. The original project is available at https://www.figma.com/design/qgsX2rZdrDIv4KNbPU3je7/Agenda-M%C3%A9dica-App-Design.
 
----
+  ## Running the code
+
+  Run `npm i` to install the dependencies.
+
+  Run `npm run dev` to start the development server.
+  
 
 ## 👨‍💻 Author
 
