@@ -1,6 +1,9 @@
 import os
 from flask import Flask
+
+from app.logger import setup_logging
 from .db import init_db, seed_default_user, close_db
+
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
@@ -25,4 +28,6 @@ def create_app(test_config=None):
         init_db()
         seed_default_user()
 
+    setup_logging(app)
+    
     return app
