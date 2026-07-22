@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TimeSaver | Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="page-login">
+  <div class="top-accent"></div>
+  <main class="login-shell">
+    <section class="brand-block">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="64" height="64">
+          <rect x="4" y="4" width="56" height="56" rx="14" fill="#16a3a1"/>
+          <circle cx="32" cy="32" r="18" fill="white" opacity=".15"/>
+          <path d="M24.5 32l5.5 5.5 10-10" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="32" cy="20" r="2" fill="white" opacity=".65"/>
+          <circle cx="32" cy="44" r="2" fill="white" opacity=".65"/>
+          <circle cx="20" cy="32" r="2" fill="white" opacity=".65"/>
+          <circle cx="44" cy="32" r="2" fill="white" opacity=".65"/>
+        </svg>
+      </div>
+      <h1><span>Time</span>Saver</h1>
+      <p>Agenda Médica</p>
+    </section>
+
+    <section class="card login-card">
+      <header class="card-header">
+        <h2>Acesse sua conta</h2>
+        <p>Entre com suas credenciais para continuar.</p>
+      </header>
+
+      <form method="POST" action="{{ url_for('main.login') }}" class="login-form" novalidate>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <div class="field">
+          <label for="identifier">Usuário ou e-mail</label>
+          <input id="identifier" name="identifier" type="text" placeholder="usuario ou email@empresa.com" autocomplete="username" />
+        </div>
+
+        <div class="field">
+          <label for="password">Senha</label>
+          <input id="password" name="password" type="password" placeholder="••••••••" autocomplete="current-password" />
+        </div>
+
+        <button class="btn-primary" type="submit">Entrar</button>
+      </form>
+    </section>
+
+    <p class="demo-hint">Acesso de demonstração: <strong>admin / admin</strong></p>
+  </main>
+
+  <footer class="site-footer">timersaver.com.br</footer>
+</body>
+</html>
