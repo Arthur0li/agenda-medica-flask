@@ -12,11 +12,15 @@ A aplicação foi construída utilizando **Flask**, **SQLite**, **Docker** e uma
 
 > Login
 
-*(Captura de tela)*
+![Login](docs/img/login.png)
 
 > Agenda Médica
 
-*(Captura de tela)*
+![Login](docs/img/agenda.png)
+
+> Exemplo de Erro
+
+![Login](docs/img/erro.png)
 
 ---
 
