@@ -42,9 +42,10 @@ def fetch_appointments(api_url, timeout=8):
                 ", ".join(sorted(missing)),
                 item,
             )
-
             raise AppointmentServiceError(
                 "Campos obrigatórios ausentes na resposta recebida."
             )
+
+        validated.append(item)
 
     return validated
