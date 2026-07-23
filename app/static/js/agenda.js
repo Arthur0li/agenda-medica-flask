@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const fields = ["patient", "cpf", "doctor", "specialty", "plan", "status", "date", "time"];
   let allData = [];
   let table = null;
-  let currentStatus = "all";
 
   const statMap = {
     total: document.getElementById("stat-total"),
@@ -53,22 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const q = normalize(searchInput ? searchInput.value : "");
     let filtered = [...allData];
 
-    if (currentStatus === "empty") {
-      filtered = [];
-      renderEmptyState("Nenhum agendamento encontrado.", "Não há agendamentos disponíveis.");
-      return;
-    }
-
-    if (currentStatus === "error") {
-      renderErrorState("Não foi possível carregar os agendamentos.");
-      return;
-    }
-
-    if (currentStatus === "api-down") {
-      renderErrorState("Serviço temporariamente indisponível. Tente novamente em alguns instantes.");
-      return;
-    }
-
     if (q) {
       filtered = filtered.filter((item) => {
         return fields.some((field) => normalize(item[field]).includes(q));
@@ -76,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (!table) return;
+
     table.setData(filtered);
 
     if (filtered.length === 0) {
@@ -83,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       setMessage("", "");
     }
+
     updateStats(filtered);
   }
 
@@ -167,20 +152,4 @@ document.addEventListener("DOMContentLoaded", () => {
   if (searchInput) {
     searchInput.addEventListener("input", applyFilters);
   }
-
-  document.querySelectorAll(".filter-chip").forEach((button) => {
-    button.addEventListener("click", () => {
-      document.querySelectorAll(".filter-chip").forEach((b) => b.classList.remove("active"));
-      button.classList.add("active");
-      currentStatus = button.dataset.status || "all";
-      if (currentStatus === "all") {
-        setMessage("", "");
-        table.setData(allData);
-        updateStats(allData);
-        applyFilters();
-      } else {
-        applyFilters();
-      }
-    });
-  });
 });
